@@ -56,6 +56,7 @@ function addrecord()
         }
     )
     document.getElementById("addrecordform").style.visibility="hidden";
+    showrecords();
 }
 
 function createTable()
@@ -119,10 +120,6 @@ function saveRecordToTable(i)
                 btn_manage.value="manage record"
             }
         };
-
-
-    //btn.onClick=managingrecords(i);
-    //btn.onClick=(function() {return function() {managingrecords(i);}})(i);
     
     td_operations.appendChild(btn_manage);
 
@@ -138,35 +135,50 @@ function saveRecordToTable(i)
 
 function selectrecord(id)
     {
+        document.getElementById("recordid").value=id;
         document.getElementById("oldninumber").value=QArecords[id].ninumber;
         document.getElementById("oldfullname").value=QArecords[id].fullname;
         document.getElementById("oldphone").value=QArecords[id].phone;
         document.getElementById("oldaddress").value=QArecords[id].address;
         document.getElementById("olddepartment").value=QArecords[id].department;
-        let updatebtn=document.createElement("button");
-        updatebtn.innerHTML='<value="update" onclick=updaterecord()>'
-        let removebtn=document.createElement("button");
-        removebtn.innerHTML='<value="delete" onclick=deleterecord()>'
-
-        //document.appendChild(updatebtn);
-        //document.appendChild(removebtn);
-
     }
 
 function updaterecord()
 {
-    let id = document.getElementById("num").value;
-    QArecords[id].ninumber=document.getElementById("oldninumber").value;
-    QArecords[id].fullname=document.getElementById("oldfullname").value;
-    QArecords[id].phone=document.getElementById("oldphone").value;
-    QArecords[id].address=document.getElementById("oldaddress").value;
-    QArecords[id].department=document.getElementById("olddepartment").value;
+    let ch=confirm("Please confirm your changes");
+    if (ch==true)
+    {
+        let id = document.getElementById("recordid").value;
+        QArecords[id].ninumber=document.getElementById("oldninumber").value;
+        QArecords[id].fullname=document.getElementById("oldfullname").value;
+        QArecords[id].phone=document.getElementById("oldphone").value;
+        QArecords[id].address=document.getElementById("oldaddress").value;
+        QArecords[id].department=document.getElementById("olddepartment").value;
+    }
+    showrecords();
+    clearselectrecord();
 }
 
 function deleterecord()
 {
-    let id=document.getElementById("num").value;
-    QArecords.splice(id,1);
+    let ch=confirm("Please confirm you wish to delete the record");
+    if (ch==true)
+    {
+        let id=document.getElementById("recordid").value;
+        QArecords.splice(id,1);
+    }
+    showrecords();
+    clearselectrecord();
+}
+
+function clearselectrecord()
+{
+    document.getElementById("recordid").value="";
+        document.getElementById("oldninumber").value="";
+        document.getElementById("oldfullname").value="";
+        document.getElementById("oldphone").value="";
+        document.getElementById("oldaddress").value="";
+        document.getElementById("olddepartment").value="";
 }
 
 
