@@ -1,5 +1,3 @@
-//removeelement
-
 let Reftable = document.createElement("table");
 let i;
 
@@ -90,7 +88,6 @@ function createTable()
     Reftable.appendChild(Trow);
 }
 
-
 function saveRecordToTable(i)
 {
     let Trow=document.createElement("tr");
@@ -156,21 +153,21 @@ function selectrecord(id)
 
     }
 
-    function updaterecord()
-    {
-        let id = document.getElementById("num").value;
-        QArecords[id].ninumber=document.getElementById("oldninumber").value;
-        QArecords[id].fullname=document.getElementById("oldfullname").value;
-        QArecords[id].phone=document.getElementById("oldphone").value;
-        QArecords[id].address=document.getElementById("oldaddress").value;
-        QArecords[id].department=document.getElementById("olddepartment").value;
-    }
+function updaterecord()
+{
+    let id = document.getElementById("num").value;
+    QArecords[id].ninumber=document.getElementById("oldninumber").value;
+    QArecords[id].fullname=document.getElementById("oldfullname").value;
+    QArecords[id].phone=document.getElementById("oldphone").value;
+    QArecords[id].address=document.getElementById("oldaddress").value;
+    QArecords[id].department=document.getElementById("olddepartment").value;
+}
 
-    function deleterecord()
-    {
-        let id=document.getElementById("num").value;
-        QArecords.splice(id,1);
-    }
+function deleterecord()
+{
+    let id=document.getElementById("num").value;
+    QArecords.splice(id,1);
+}
 
 
 
