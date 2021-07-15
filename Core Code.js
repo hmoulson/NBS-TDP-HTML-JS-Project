@@ -41,7 +41,10 @@ function managingrecords(id)
     alert(id);
 }
 
-
+function addrecordform()
+{
+    document.getElementById("addrecordform").style.visibility="visible";
+}
 
 function addrecord()
 {
@@ -51,9 +54,10 @@ function addrecord()
             "fullname":document.getElementById("newfullname").value,
             "phone":document.getElementById("newphone").value,
             "address":document.getElementById("newaddress").value,
-            "department":document.getElementById("newdepartment").value,
+            "department":document.querySelector('input[name="newdepartment"]:checked').value
         }
     )
+    document.getElementById("addrecordform").style.visibility="hidden";
 }
 
 function createTable()
@@ -102,19 +106,28 @@ function saveRecordToTable(i)
     td_phone.innerHTML=QArecords[i].phone;
     td_address.innerHTML=QArecords[i].address;
     td_department.innerHTML=QArecords[i].department;
-    td_operations.innerHTML='<input type="button" value="amend record" id=i onclick=managingrecords(id)>'
 
-    /*
-    let btn = document.createElement('input');
-    btn.type = "button";
-    btn.id = i;
-    btn.value = "update";
+    let btn_manage = document.createElement('input');
+        btn_manage.type = "button";
+        btn_manage.id = i;
+        btn_manage.value = "manage record";
+
+        btn_manage.onclick=function(){
+            if(btn_manage.value=="manage record")
+            {
+                selectrecord(btn_manage.id);
+            }
+            else
+            {
+                btn_manage.value="manage record"
+            }
+        };
+
+
     //btn.onClick=managingrecords(i);
-    btn.onClick=(function() {return function() {managingrecords(i);}})(i);
+    //btn.onClick=(function() {return function() {managingrecords(i);}})(i);
     
-    td_operations.appendChild(btn);
-
-    */
+    td_operations.appendChild(btn_manage);
 
     Trow.appendChild(td_ninumber);
     Trow.appendChild(td_fullname);
@@ -126,9 +139,8 @@ function saveRecordToTable(i)
     Reftable.appendChild(Trow);
 }
 
-function selectrecord()
+function selectrecord(id)
     {
-        let id = document.getElementById("num").value;
         document.getElementById("oldninumber").value=QArecords[id].ninumber;
         document.getElementById("oldfullname").value=QArecords[id].fullname;
         document.getElementById("oldphone").value=QArecords[id].phone;
@@ -139,8 +151,8 @@ function selectrecord()
         let removebtn=document.createElement("button");
         removebtn.innerHTML='<value="delete" onclick=deleterecord()>'
 
-        document.appendChild(updatebtn);
-        document.appendChild(removebtn);
+        //document.appendChild(updatebtn);
+        //document.appendChild(removebtn);
 
     }
 
@@ -152,6 +164,12 @@ function selectrecord()
         QArecords[id].phone=document.getElementById("oldphone").value;
         QArecords[id].address=document.getElementById("oldaddress").value;
         QArecords[id].department=document.getElementById("olddepartment").value;
+    }
+
+    function deleterecord()
+    {
+        let id=document.getElementById("num").value;
+        QArecords.splice(id,1);
     }
 
 
