@@ -1,0 +1,56 @@
+<html>
+<script type="text/javascript" src="Core Code.js"> </script>
+<script type="text/javascript" src="JSON Data.js"> </script>
+
+
+</script>
+<body>
+    <input type=button value='Show Records' onclick=showrecords()>
+    <input type=button value='Add Record' onclick=addrecord()>
+    <input type=button value='Edit Records'>
+    <input type=button value='Delete Records'>
+
+    <br>
+    <br>
+    Please enter the following: <br>
+    NI Number: <input type=text id=newninumber position.left=200> <br>
+    Full Name: <input type=text id=newfullname> <br>
+    Phone Number: <input type=text id=newphone> <br>
+    Address: <input type=text id=newaddress> <br>
+    Please select the Person's Department: <br>
+    IT - <input type=radio value=IT name=newdepartment> <br>
+    Sales - <input type=radio value=Sales name=newdepartment> <br>
+    HR - <input type=radio value=HR name=newdepartment> <br>
+    <br><br>
+
+    To filter, please select the Department Area <br>
+    Department: <select id=Department_Select> 
+        <option> HR </option>
+        <option> Sales </option>
+        <option> IT </option>
+    </select> <br>
+    <input type="button" value="Show Filtered Records" onclick=ShowFilterRecords()>
+
+    <br>
+    <br>
+    <br>
+    num <input id=num type=text> <input type=button value = "select record" onclick=selectrecord()> <br>
+    NI Number: <input type=text value="" id=oldninumber> <br>
+    Full Name: <input type=text value="" id=oldfullname> <br>
+    Phone Number: <input type=text value="" id=oldphone> <br>
+    Address: <input type=text value="" id=oldaddress> <br>
+    Department: <input type=text value="" id=olddepartment> <br>
+    
+
+    <script>
+        
+    </script>
+
+
+
+
+
+
+</body>
+
+
