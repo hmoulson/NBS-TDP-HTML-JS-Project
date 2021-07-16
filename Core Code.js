@@ -34,11 +34,6 @@ function ShowFilterRecords()
     document.body.appendChild(Reftable);
 }
 
-function managingrecords(id)
-{
-    alert(id);
-}
-
 function addrecordform()
 {
     document.getElementById("addrecordform").style.visibility="visible";
