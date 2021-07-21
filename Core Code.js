@@ -11,7 +11,7 @@ function showrecords()
         saveRecordToTable(i)
     }
 
-    document.body.appendChild(Reftable);
+    tablecolumn.appendChild(Reftable);
 }
 
 function ShowFilterRecords()
@@ -31,7 +31,7 @@ function ShowFilterRecords()
         }
     }   
 
-    document.body.appendChild(Reftable);
+    tablecolumn.appendChild(Reftable);
 }
 
 function addrecordform()

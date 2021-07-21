@@ -1,0 +1,35 @@
+body
+{
+    background-color:white;
+}
+
+h1
+{
+    color: darkblue;
+    text-align: center;
+}
+
+.header {
+    background-color: lightsteelblue;
+    padding: 20px;
+    text-align: center;
+  }
+
+.column {
+
+    float: left;
+    width: 45%;
+    padding: 35px;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+@media screen and (max-width:600px) {
+.column {
+    width: 100%;
+}
+}
