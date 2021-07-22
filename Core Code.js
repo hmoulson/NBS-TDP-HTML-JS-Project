@@ -1,8 +1,11 @@
-let Reftable = document.createElement("table");
-let form = document.createElement("form");
+let Reftable = document.createElement("table");     //Record Display Table
+let form = document.createElement("form");          //Manage Record Form
 let i;
 
-function showrecords() //show all records form. Runs createTable() and saveRecordToTable() at runtime.
+
+//Showing Records in Table
+
+function showrecords()              //show all records form. Runs createTable() and saveRecordToTable() at runtime.
 {
     Reftable.innerHTML="";
     createTable();
@@ -15,7 +18,7 @@ function showrecords() //show all records form. Runs createTable() and saveRecor
     tablecolumn.appendChild(Reftable);
 }
 
-function ShowFilterRecords() //show filtered records form. Runs createTable() and saveRecordToTable() at runtime.
+function ShowFilterRecords()        //show filtered records form. Runs createTable() and saveRecordToTable() at runtime.
 {
     Reftable.innerHTML="";
     createTable();
@@ -35,7 +38,7 @@ function ShowFilterRecords() //show filtered records form. Runs createTable() an
     tablecolumn.appendChild(Reftable);
 }
 
-function createTable() //creates showRecords table headers
+function createTable()              //creates showRecords table headers
 {
     Reftable.border=4;
 
@@ -65,7 +68,7 @@ function createTable() //creates showRecords table headers
     Reftable.appendChild(Trow);
 }
 
-function saveRecordToTable(i) //add records to showRecords table
+function saveRecordToTable(i)       //add records to showRecords table
 {
     let Trow=document.createElement("tr");
     let td_ninumber=document.createElement("td");
@@ -109,47 +112,62 @@ function saveRecordToTable(i) //add records to showRecords table
     Reftable.appendChild(Trow);
 }
 
-function selectrecord(id) //select record from showrecord table. Runs createupdateform() and populates with appropriate table data.
-    {
-        createupdateform();
-        document.getElementById("recordID").value=id;
-        document.getElementById("recordID").readOnly=true;
-        document.getElementById("niNumberEdit").value=QArecords[id].ninumber;
-        document.getElementById("fullNameEdit").value=QArecords[id].fullname;
-        document.getElementById("phoneEdit").value=QArecords[id].phone;
-        document.getElementById("addressEdit").value=QArecords[id].address;
-        document.getElementById("departmentEdit").value=QArecords[id].department;
-    }
 
-function updaterecord() //updates values against a record. Runs showrecords() to conclude.
+
+//Managing the Records (Update / Delete)
+
+function niNumSearchForm()          //makes visible the ni Number search.
 {
-    let ch=confirm("Please confirm your changes");
-    if (ch==true)
-    {
-        let id = document.getElementById("recordID").value;
-        QArecords[id].ninumber=document.getElementById("niNumberEdit").value;
-        QArecords[id].fullname=document.getElementById("fullNameEdit").value;
-        QArecords[id].phone=document.getElementById("phoneEdit").value;
-        QArecords[id].address=document.getElementById("addressEdit").value;
-        QArecords[id].department=document.getElementById("departmentEdit").value;
-    }
-    showrecords();
     form.innerHTML="";
+    document.getElementById("ninumbersearch").style="visibility:visible";
 }
 
-function deleterecord() //deletes a record. Runs showrecords() to conclude.
+function hideNiNumSearchForm()      //hides the ni Number search.
 {
-    let ch=confirm("Please confirm you wish to delete the record");
-    if (ch==true)
-    {
-        let id=document.getElementById("recordID").value;
-        QArecords.splice(id,1);
-    }
-    showrecords();
     form.innerHTML="";
+    document.getElementById("ninumbercheck").value="";
+    document.getElementById("ninumbersearch").style="visibility:hidden";
 }
 
-function createupdateform() //creates manage record form - offers buttons to update and delete records using updaterecord() and deleterecord().
+function findrecord()               //finds record based off NI Number input by user. Triggers selectrecord() or error message.
+{
+    i=0
+    for(;i<QArecords.length;i++)
+    {
+        if(QArecords[i].ninumber == document.getElementById("ninumbercheck").value)
+        {
+            selectrecord(i);
+            break;
+        }
+        else
+        {
+            if(i<(QArecords.length-1))
+            {
+                continue;
+            }
+            else
+            {
+                alert("NI Number not recognised, please try again")
+                continue;
+            }
+        }
+    }
+}
+
+function selectrecord(id)           //select record from showrecord table. Runs createupdateform() and populates with appropriate table data.
+{
+    hideNiNumSearchForm();
+    createupdateform();
+    document.getElementById("recordID").value=id;
+    document.getElementById("recordID").readOnly=true;
+    document.getElementById("niNumberEdit").value=QArecords[id].ninumber;
+    document.getElementById("fullNameEdit").value=QArecords[id].fullname;
+    document.getElementById("phoneEdit").value=QArecords[id].phone;
+    document.getElementById("addressEdit").value=QArecords[id].address;
+    document.getElementById("departmentEdit").value=QArecords[id].department;
+}
+
+function createupdateform()         //creates manage record form - offers buttons to update and delete records using updaterecord() and deleterecord().
 {
     form.innerHTML = "";
 
@@ -251,9 +269,42 @@ function createupdateform() //creates manage record form - offers buttons to upd
     RecordEditColumn.appendChild(form);
 }
 
-function createaddrecordform() //creates add record form - offers buttons to addrecord and cancel records using pushrecord() and createaddrecordform().
+function updaterecord()             //updates values against a record. Runs showrecords() to conclude.
+{
+    let ch=confirm("Please confirm your changes");
+    if (ch==true)
+    {
+        let id = document.getElementById("recordID").value;
+        QArecords[id].ninumber=document.getElementById("niNumberEdit").value;
+        QArecords[id].fullname=document.getElementById("fullNameEdit").value;
+        QArecords[id].phone=document.getElementById("phoneEdit").value;
+        QArecords[id].address=document.getElementById("addressEdit").value;
+        QArecords[id].department=document.getElementById("departmentEdit").value;
+    }
+    showrecords();
+    form.innerHTML="";
+}
+
+function deleterecord()             //deletes a record. Runs showrecords() to conclude.
+{
+    let ch=confirm("Please confirm you wish to delete the record");
+    if (ch==true)
+    {
+        let id=document.getElementById("recordID").value;
+        QArecords.splice(id,1);
+    }
+    showrecords();
+    form.innerHTML="";
+}
+
+
+
+//Adds Records to Dataset
+
+function createaddrecordform()      //creates add record form - offers buttons to addrecord and cancel records using pushrecord() and createaddrecordform().
 {
     form.innerHTML = "";
+    hideNiNumSearchForm();
 
     let newninum = document.createElement("div");
         newninum.innerHTML = "NI Number: ";
@@ -319,14 +370,6 @@ function createaddrecordform() //creates add record form - offers buttons to add
         newdepartment.appendChild(ItDept);
         newdepartment.appendChild(HRDept);
         newdepartment.appendChild(SalesDept);
-
-
-/*
-        Please select the Person's Department: <br>
-        IT - <input type=radio value=IT name=newdepartment> <br>
-        Sales - <input type=radio value=Sales name=newdepartment> <br>
-        HR - <input type=radio value=HR name=newdepartment> <br>
-*/
     
     let addRecordManage = document.createElement("div");
     let addRecordButton = document.createElement("input");
@@ -352,13 +395,13 @@ function createaddrecordform() //creates add record form - offers buttons to add
         cancelAddButton.value="Cancel";
 
         cancelAddButton.onclick=function(){
-            if(deleteButton.value=="Cancel")
+            if(cancelAddButton.value=="Cancel")
             {
                 createaddrecordform();
             }
             else
             {
-                deleteButton.value="Cancel"
+                cancelAddButton.value="Cancel"
             }
         };
 
@@ -377,7 +420,7 @@ function createaddrecordform() //creates add record form - offers buttons to add
     RecordEditColumn.appendChild(form);
 }
 
-function pushrecord() //pushes completed addrecordform record into file. Runs showrecords() at runtime.
+function pushrecord()               //pushes completed addrecordform record into file. Runs showrecords() at runtime.
 {
     QArecords.push(
         {
@@ -390,34 +433,6 @@ function pushrecord() //pushes completed addrecordform record into file. Runs sh
     )
     form.innerHTML="";
     showrecords();
-}
-
-function findrecord() //finds record based off NI Number input by user. Triggers selectrecord() or error message.
-{
-    i=0
-    for(;;i++)
-    {
-        if(i>QArecords.length)
-        {
-            alert("NI Number not recognised, please try again")
-            break;
-        }
-        else if(QArecords[i].ninumber == document.getElementById("ninumbercheck").value)
-        {
-            alert("found");
-            selectrecord(i);
-            break;
-        }
-        else
-        {
-            continue;
-        }
-    }
-}
-
-function niNumSearchForm() //makes visible, the ni Number search
-{
-    document.getElementById("ninumbersearch").style="visibility:visible";
 }
 
 
