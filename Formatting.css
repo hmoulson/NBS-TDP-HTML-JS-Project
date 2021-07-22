@@ -9,6 +9,16 @@ h1
     text-align: center;
 }
 
+.row a
+{
+    background-color: darkblue;
+}
+
+.row b
+{
+    background-color: white;
+}
+
 .header {
     background-color: lightsteelblue;
     padding: 20px;
@@ -28,7 +38,7 @@ display: table;
 clear: both;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:400px) {
 .column {
     width: 100%;
 }

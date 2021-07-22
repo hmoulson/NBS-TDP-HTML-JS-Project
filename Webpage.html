@@ -13,9 +13,9 @@
         <h1> User Records </h1> <br>
     </div>
     
-    <div class="row">
-        <div class = "column" id="ShowRecordsBar"> <a>
-            <input type=button value='Show Records' onclick=showrecords()> <br>
+    <div class="row" style="border:3px solid lightskyblue" style="color:paleturquoise"> 
+        <div class = "column" id="ShowRecordsBar">
+            <input type=button value='Show Records' style="width:80%;height:30px" onclick=showrecords()> <br><br>
             To filter, please select the Department Area <br>
             Department: <select id=Department_Select> 
                 <option> HR </option>
@@ -24,21 +24,21 @@
             </select>
             <input type="button" value="Show Filtered Records" onclick=ShowFilterRecords()>
 
-        </a> </div>
+        </div>
 
-        <div class="column" id=ChangeRecords> <a>
-            <input type=button value='Add Record' onclick=createaddrecordform()>
-            <input type=button value='Edit Record' onclick=createupdateform()> <br>
-            <span visibility = hidden>
+        <div class="column" id=ChangeRecords>
+            <input type=button value='Add Record' style="width:40%;height:30px" onclick=createaddrecordform()>
+            <input type=button value='Edit Record' style="width:40%;height:30px" onclick=niNumSearchForm()> <br><br>
+            <span id=ninumbersearch style="visibility:hidden">
             Please enter NI Number:
             <input type=text id=ninumbercheck>
-            <input type=button value="Select" id='searchNiNumber' onclick=findrecord()>
+            <input type=button value="Select" id='searchNiNumber' style=width:20% onclick=findrecord()>
             </span>
-        </a> </div>
+       </div>
+    
     </div>
-    <br>
-
-    <div class= "row">
+    
+    <div class= "row"> 
         <div class="column" id="tablecolumn">
 
         </div>

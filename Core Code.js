@@ -392,28 +392,32 @@ function pushrecord() //pushes completed addrecordform record into file. Runs sh
     showrecords();
 }
 
-function findrecord()
+function findrecord() //finds record based off NI Number input by user. Triggers selectrecord() or error message.
 {
     i=0
-    for(;i<QArecords.length;i++)
+    for(;;i++)
     {
-        if(QArecords[i].ninumber == document.getElementById(searchNiNumber))
+        if(i>QArecords.length)
+        {
+            alert("NI Number not recognised, please try again")
+            break;
+        }
+        else if(QArecords[i].ninumber == document.getElementById("ninumbercheck").value)
         {
             alert("found");
             selectrecord(i);
             break;
         }
-        else if(i==QArecords.length)
-        {
-            alert("NI Number not recognised, please try again")
-            break;
-        }
         else
         {
-            alert("continuing")
             continue;
         }
     }
+}
+
+function niNumSearchForm() //makes visible, the ni Number search
+{
+    document.getElementById("ninumbersearch").style="visibility:visible";
 }
 
 
