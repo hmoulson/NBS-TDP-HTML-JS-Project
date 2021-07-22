@@ -27,8 +27,8 @@
         </a> </div>
 
         <div class="column" id=ChangeRecords> <a>
-            <input type=button value='Add Record' onclick=addrecordform()>
-            <input type=button value='Edit Record'>
+            <input type=button value='Add Record' onclick=createaddrecordform()>
+            <input type=button value='Edit Record' onclick=createupdateform()>
         </a> </div>
     </div>
 
@@ -41,45 +41,12 @@
 
         </div>
         <div class="column" id="RecordEditColumn">
-            <form id="addrecordform" style="visibility:hidden">
-                Please enter the following: <br>
-                NI Number: <input type=text id=newninumber position.left=200> <br>
-                Full Name: <input type=text id=newfullname> <br>
-                Phone Number: <input type=text id=newphone> <br>
-                Address: <input type=text id=newaddress> <br>
-                Please select the Person's Department: <br>
-                IT - <input type=radio value=IT name=newdepartment> <br>
-                Sales - <input type=radio value=Sales name=newdepartment> <br>
-                HR - <input type=radio value=HR name=newdepartment> <br>
-                <input type="button" value="submit" onclick=addrecord()>
-            </form>
-
-            <span class="managepopupform" id="managepopupform">
-                <input type=text value="" id="recordid" style="visibility:hidden"> <br>
-                NI Number: <input type=text value="" id=oldninumber> <br>
-                Full Name: <input type=text value="" id=oldfullname> <br>
-                Phone Number: <input type=text value="" id=oldphone> <br>
-                Address: <input type=text value="" id=oldaddress> <br>
-                Department: <input type=text value="" id=olddepartment> <br>
-                <input type="button" value="update record" onclick=updaterecord()> <input type="button" value="delete record" onclick=deleterecord()>
-                </span>
+            
         </div>
 
 
 
     </div>
-
-    <br>
-    <br>
-
-    <script>
-        
-    </script>
-
-
-
-
-
 
 </body>
 
