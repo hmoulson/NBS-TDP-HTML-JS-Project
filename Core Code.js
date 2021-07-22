@@ -392,6 +392,29 @@ function pushrecord() //pushes completed addrecordform record into file. Runs sh
     showrecords();
 }
 
+function findrecord()
+{
+    i=0
+    for(;i<QArecords.length;i++)
+    {
+        if(QArecords[i].ninumber == document.getElementById(searchNiNumber))
+        {
+            alert("found");
+            selectrecord(i);
+            break;
+        }
+        else if(i==QArecords.length)
+        {
+            alert("NI Number not recognised, please try again")
+            break;
+        }
+        else
+        {
+            alert("continuing")
+            continue;
+        }
+    }
+}
 
 
 

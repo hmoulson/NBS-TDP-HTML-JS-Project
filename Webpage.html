@@ -28,12 +28,14 @@
 
         <div class="column" id=ChangeRecords> <a>
             <input type=button value='Add Record' onclick=createaddrecordform()>
-            <input type=button value='Edit Record' onclick=createupdateform()>
+            <input type=button value='Edit Record' onclick=createupdateform()> <br>
+            <span visibility = hidden>
+            Please enter NI Number:
+            <input type=text id=ninumbercheck>
+            <input type=button value="Select" id='searchNiNumber' onclick=findrecord()>
+            </span>
         </a> </div>
     </div>
-
-    <br>
-    <br>
     <br>
 
     <div class= "row">
@@ -43,8 +45,6 @@
         <div class="column" id="RecordEditColumn">
             
         </div>
-
-
 
     </div>
 
